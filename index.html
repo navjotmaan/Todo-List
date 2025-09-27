@@ -7,15 +7,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="todo-list">
+    <div id="container">
         <div id="sidebar">
             <h1>Your Tasks</h1>
-            <button id="add-task">Add Task</button>
+            <button id="add-task" onclick="document.getElementById('tasks').showModal()">Add Task</button>
         </div>
 
         <div id="todos"></div>
     </div>
 
+    <dialog id="tasks">
+        <form id="task-info">
+            <label for="title"></label>
+            <input id="title" name="title" type="text" placeholder="Add Task">
+
+            <label for="description">Description: </label>
+            <input id="description" name="description" type="text">
+
+            <label for="date">Due Date: </label>
+            <input id="date" name="date" type="date">
+
+            <label for="priority">Priority: </label>
+            <select>
+                <option>low</option>
+                <option>medium</option>
+                <option>high</option>
+            </select>
+
+            <button type="submit" id="save-task">Save</button>
+        </form>
+    </dialog>
 
     <script src="script.js"></script>
 </body>
