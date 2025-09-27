@@ -18,6 +18,7 @@
 
     <dialog id="tasks">
         <form id="task-info">
+
             <label for="title"></label>
             <input id="title" name="title" type="text" placeholder="Add Task">
 
@@ -27,12 +28,18 @@
             <label for="date">Due Date: </label>
             <input id="date" name="date" type="date">
 
-            <label for="priority">Priority: </label>
-            <select>
-                <option>low</option>
-                <option>medium</option>
-                <option>high</option>
-            </select>
+            <fieldset id="priority">
+                <legend>Priority</legend>
+            
+                <input id="low" type="radio" name="priority" >
+                <label for="low">Low</label>
+
+                <input id="medium" type="radio" name="priority">
+                <label for="medium">Medium</label>
+                
+                <input id="high" type="radio" name="priority" >
+                <label for="high">High</label>
+            </fieldset>
 
             <button type="submit" id="save-task">Save</button>
         </form>
