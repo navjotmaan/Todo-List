@@ -28,20 +28,21 @@
             <label for="date">Due Date: </label>
             <input id="date" name="date" type="date">
 
-            <fieldset id="priority">
-                <legend>Priority</legend>
+            <fieldset>
+                <legend id="priority">Priority</legend>
             
                 <input id="low" type="radio" name="priority" >
                 <label for="low">Low</label>
 
                 <input id="medium" type="radio" name="priority">
                 <label for="medium">Medium</label>
-                
+
                 <input id="high" type="radio" name="priority" >
                 <label for="high">High</label>
             </fieldset>
 
-            <button type="submit" id="save-task">Save</button>
+            <button id="save-task" type="submit">Save</button>
+            <button type="button" onclick="document.getElementById('tasks').close()">Close</button>
         </form>
     </dialog>
 
