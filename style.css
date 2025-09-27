@@ -19,3 +19,37 @@
     height: 100vh;
     width: 80%;
 }
+
+#task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#tasks {
+    width: 30vw;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 30px;
+    border: none;
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+#save-task {
+    margin: 30px auto;
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+
+}
