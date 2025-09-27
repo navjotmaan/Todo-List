@@ -9,13 +9,18 @@
 }
 
 #sidebar {
-    background-color: cadetblue;
+    background-color: #dee2e6;
     height: 100vh;
     width: 20%;
 }
 
+#add-task {
+    background-color: #dee2e6;
+    border: none;
+}
+
 #todos {
-    background-color: chocolate;
+    background-color: #f8f9fa;
     height: 100vh;
     width: 80%;
 }
@@ -48,8 +53,27 @@ label {
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: blue;
+    background-color: rgb(77, 77, 122);
     color: white;
     font-weight: bold;
 
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    border: 2px solid rgb(128, 128, 242);
+    margin: 20px;
+    padding: 10px;
+}
+
+#delete {
+    width: 20px;
+    height: 20px;
+}
+
+#box {
+    display: flex;
+    justify-content: space-between;
 }
