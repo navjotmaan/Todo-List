@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div id="container">
         <div id="sidebar">
             <h1>Your Tasks</h1>
-            <button id="add-task" onclick="document.getElementById('tasks').showModal()">Add Task</button>
+            <button class="add-task" onclick="document.getElementById('tasks').showModal()">Add Task</button>
+            <button class="add-task" onclick="document.getElementById('projects').showModal()">My Projects</button>
         </div>
 
         <div id="todos"></div>
@@ -20,7 +22,7 @@
         <form id="task-info">
 
             <label for="title"></label>
-            <input id="title" name="title" type="text" placeholder="Add Task">
+            <input id="title" name="title" type="text" placeholder="Task Name">
 
             <label for="description">Description: </label>
             <input id="description" name="description" type="text">
@@ -41,8 +43,22 @@
                 <label for="high">High</label>
             </fieldset>
 
-            <button id="save-task" type="submit">Save</button>
-            <button type="button" onclick="document.getElementById('tasks').close()">Close</button>
+            <div class="btns">
+                <button class="save-btn" type="submit">Save</button>
+                <button class="close-btn" type="button" onclick="document.getElementById('tasks').close()">Close</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="projects">
+        <form id="projects-name">
+            <label for="project-name"></label>
+            <input id="project-name" name="project-name" type="text" placeholder="Project Name">
+
+            <div class="btns">
+                <button class="save-btn" type="submit">Done</button>
+                <button class="close-btn" type="button" onclick="document.getElementById('projects').close()">Close</button>
+            </div>
         </form>
     </dialog>
 
