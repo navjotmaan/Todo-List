@@ -76,6 +76,7 @@ export function renderProjects() {
     box.classList.add('box');
 
     const icon = document.createElement('div');
+    icon.classList.add('icons-box');
     icon.appendChild(edit);
     icon.appendChild(deleteBtn);
 
@@ -98,14 +99,25 @@ export function renderProjects() {
 
 export function showTask(task) {
   const taskCard = document.createElement('div');
+  taskCard.classList.add('task-name');
+
+  const checklist = document.createElement('input');
+  checklist.setAttribute('type', 'checkbox');
+  checklist.setAttribute('name', 'checklist');
 
   const heading = document.createElement('h3');
+  heading.setAttribute('id', 'show-task');
   heading.textContent = task.title;
 
   const date = document.createElement('p');
   date.textContent = task.dueDate;
 
-  taskCard.appendChild(heading);
+  const check = document.createElement('div');
+  check.setAttribute('id', 'checklist');
+
+  check.appendChild(checklist);
+  check.appendChild(heading);
+  taskCard.appendChild(check);
   taskCard.appendChild(date);
 
   heading.addEventListener("click", () => {
@@ -146,16 +158,16 @@ export function createTaskCard(task) {
 
   edit.addEventListener('click', () => {
     const id = taskCard.getAttribute('data-id');
-    const task = tasks.find(t => t.id === id);
+    const taskToEdit = tasks.find(t => t.id === id);
 
-    if (task) {
+    if (taskToEdit) {
       document.getElementById('title').value = task.title;
       document.getElementById('description').value = task.description;
       document.getElementById('date').value = task.dueDate;
       document.getElementById(task.priority).checked = true;
       document.getElementById('project-select').value = task.projectId;
 
-      editingTaskId = task.id;
+      editingTaskId = taskToEdit.id;
       document.getElementById('tasks').showModal();
     }
   });
@@ -179,6 +191,7 @@ export function createTaskCard(task) {
   box.appendChild(heading);
 
   const icons = document.createElement('div');
+  icons.classList.add('icons-box');
   icons.appendChild(edit);
   icons.appendChild(deleteBtn);
   box.appendChild(icons);
