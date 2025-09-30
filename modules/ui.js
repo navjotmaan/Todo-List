@@ -14,6 +14,8 @@ function init() {
 }
 
 const todo = document.getElementById('todos');
+const taskForm = document.querySelector('#task-info');
+const projectForm = document.getElementById('projects-name');
 
 function renderProjects() {
   todo.innerHTML = "";
@@ -121,7 +123,21 @@ function createTaskCard(task) {
   deleteBtn.src = "./resources/cross-mark.png";
   deleteBtn.alt = "Delete task";
 
-  edit.addEventListener('click', () => {});
+  edit.addEventListener('click', () => {
+    const id = taskCard.getAttribute('data-id');
+    const task = tasks.find(t => t.id === id);
+
+    if (task) {
+      document.getElementById('title').value = task.title;
+      document.getElementById('description').value = task.description;
+      document.getElementById('date').value = task.dueDate;
+      document.getElementById(task.priority).checked = true;
+      document.getElementById('project-select').value = task.projectId;
+
+      editingTaskId = task.id;
+      document.getElementById('tasks').showModal();
+    }
+  });
 
   deleteBtn.addEventListener('click', () => {
     const remainingTasks = tasks.filter(t => t.id !== task.id);
@@ -154,20 +170,37 @@ function createTaskCard(task) {
   return taskCard;
 }
 
-const taskForm = document.querySelector('#task-info');
-const projectForm = document.getElementById('projects-name');
+let editingTaskId = null;
 
-taskForm?.addEventListener('submit', (e) => {
-  e.preventDefault();
+function addTaskInfo() {
   const title = document.getElementById('title').value;
   const description = document.getElementById('description').value;
   const dueDate = document.getElementById('date').value;
   const priority = document.querySelector('input[name="priority"]:checked')?.id || "low";
   const projectId = document.getElementById('project-select')?.value;
 
-  addTask(title, description, dueDate, priority, projectId);
+  if (editingTaskId) {
+    const task = tasks.find(t => t.id === editingTaskId);
+    if (task) {
+      task.title = title;
+      task.description = description;
+      task.dueDate = dueDate;
+      task.priority = priority;
+      task.projectId = projectId;
+    }
+    editingTaskId = null;
+  } else {
+    addTask(title, description, dueDate, priority, projectId);
+  }
+}
+
+taskForm?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  addTaskInfo();
   taskForm.reset();
   document.getElementById('tasks')?.close();
+  saveAll();
   renderProjects();
 });
 
