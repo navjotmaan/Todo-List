@@ -25,8 +25,6 @@ export function saveAll() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export function saveProject() { saveAll(); }
-
 export function loadProject() {
   const saved = JSON.parse(localStorage.getItem('projects')) || [];
   // recreate Project instances, but do NOT trust embedded tasks
@@ -40,7 +38,6 @@ export function loadProject() {
 
 export function loadTask() {
   const saved = JSON.parse(localStorage.getItem('tasks')) || [];
-  
   tasks = saved.map(t => {
     const nt = new Task(t.title, t.description, t.dueDate, t.priority, t.projectId);
     nt.id = t.id || nt.id;
@@ -72,8 +69,6 @@ export function ensureDefaultProject() {
     saveAll();
   }
 }
-
-export function saveTask() { saveAll(); }
 
 export function addProject(name) {
   const project = new Project(name);
