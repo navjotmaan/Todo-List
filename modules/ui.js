@@ -27,7 +27,7 @@ function renderProjects() {
     projectHeading.textContent = project.name;
 
     const deleteBtn = document.createElement('img');
-    deleteBtn.classList.add('delete');
+    deleteBtn.classList.add('icon');
     deleteBtn.src = "./resources/cross-mark.png";
     deleteBtn.alt = "Delete project";
 
@@ -64,13 +64,34 @@ function renderProjects() {
     // Append tasks that belong to this project
     project.tasks.forEach(task => {
       if (task) {
-        const taskCard = createTaskCard(task);
+        const taskCard = showTask(task);
         projectCard.appendChild(taskCard);
       }
     });
 
     todo.appendChild(projectCard);
   });
+}
+
+function showTask(task) {
+  const taskCard = document.createElement('div');
+
+  const heading = document.createElement('h3');
+  heading.textContent = task.title;
+
+  const date = document.createElement('p');
+  date.textContent = task.dueDate;
+
+  taskCard.appendChild(heading);
+  taskCard.appendChild(date);
+
+  heading.addEventListener("click", () => {
+    todo.textContent = "";
+    const fullTask = createTaskCard(task);
+    todo.appendChild(fullTask);
+  });
+
+  return taskCard;
 }
 
 function createTaskCard(task) {
@@ -90,10 +111,17 @@ function createTaskCard(task) {
   const priority = document.createElement('p');
   priority.textContent = `Priority: ${task.priority}`;
 
+  const edit = document.createElement('img');
+  edit.classList.add('icon');
+  edit.src = "./resources/edit-pencil.png";
+  edit.alt = "Edit task";
+
   const deleteBtn = document.createElement('img');
-  deleteBtn.classList.add('delete');
+  deleteBtn.classList.add('icon');
   deleteBtn.src = "./resources/cross-mark.png";
   deleteBtn.alt = "Delete task";
+
+  edit.addEventListener('click', () => {});
 
   deleteBtn.addEventListener('click', () => {
     const remainingTasks = tasks.filter(t => t.id !== task.id);
@@ -112,7 +140,11 @@ function createTaskCard(task) {
   const box = document.createElement('div');
   box.classList.add('box');
   box.appendChild(heading);
-  box.appendChild(deleteBtn);
+
+  const icons = document.createElement('div');
+  icons.appendChild(edit);
+  icons.appendChild(deleteBtn);
+  box.appendChild(icons);
 
   taskCard.appendChild(box);
   taskCard.appendChild(des);
