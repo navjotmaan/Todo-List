@@ -28,10 +28,27 @@ function renderProjects() {
     const projectHeading = document.createElement('h1');
     projectHeading.textContent = project.name;
 
+    const edit = document.createElement('img');
+    edit.classList.add('icon');
+    edit.src = "./resources/edit-pencil.png";
+    edit.alt = "Edit task";
+
     const deleteBtn = document.createElement('img');
     deleteBtn.classList.add('icon');
     deleteBtn.src = "./resources/cross-mark.png";
     deleteBtn.alt = "Delete project";
+
+    edit.addEventListener('click', () => {
+      const id = projectCard.getAttribute('data-id');
+      const project = projects.find(p => p.id === id);
+
+      if (project) {
+        document.getElementById('project-name').value = project.name;
+
+        editingProjectId = project.id;
+        document.getElementById('projects').showModal();
+      }
+    });
 
     deleteBtn.addEventListener('click', () => {
       if (!confirm(`Delete project "${project.name}" and all its tasks?`)) return;
@@ -58,8 +75,13 @@ function renderProjects() {
 
     const box = document.createElement('div');
     box.classList.add('box');
+
+    const icon = document.createElement('div');
+    icon.appendChild(edit);
+    icon.appendChild(deleteBtn);
+
     box.appendChild(projectHeading);
-    box.appendChild(deleteBtn);
+    box.appendChild(icon);
 
     projectCard.appendChild(box);
 
@@ -204,14 +226,31 @@ taskForm?.addEventListener('submit', (e) => {
   renderProjects();
 });
 
+let editingProjectId = null;
+
+function addProjectInfo() {
+  const name = document.getElementById('project-name').value;
+  if (!name) return;
+
+  if (editingProjectId) {
+    const project = projects.find(p => p.id === editingProjectId);
+    if (project) {
+      project.name = name;
+    }
+    editingProjectId = null;
+  } else {
+    addProject(name);
+  }
+}
+
 projectForm?.addEventListener('submit', (e) => {
   e.preventDefault();
-  const projectName = document.getElementById('project-name').value;
-  if (!projectName) return;
-  addProject(projectName);
+
+  addProjectInfo();
   projectForm.reset();
   document.getElementById('projects')?.close();
   updateProjectDropdown();
+  saveAll();
   renderProjects();
 });
 
