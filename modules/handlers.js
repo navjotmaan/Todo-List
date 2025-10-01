@@ -66,3 +66,5 @@ projectForm?.addEventListener('submit', (e) => {
 });
 
 
+const showProjects = document.querySelector('#show-projects');
+showProjects.addEventListener('click', renderProjects);

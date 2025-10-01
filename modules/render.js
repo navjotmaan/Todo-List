@@ -1,4 +1,4 @@
-import { tasks, projects, addProject, saveAll} from './data.js';
+import { tasks, projects, addProject, saveAll } from './data.js';
 
 const todo = document.getElementById('todos');
 
@@ -110,7 +110,7 @@ export function showTask(task) {
   heading.textContent = task.title;
 
   const date = document.createElement('p');
-  date.textContent = task.dueDate;
+  date.textContent = `Due-Date: ${task.dueDate}`;
 
   const check = document.createElement('div');
   check.setAttribute('id', 'checklist');
@@ -125,7 +125,7 @@ export function showTask(task) {
     const fullTask = createTaskCard(task);
     todo.appendChild(fullTask);
   });
-
+  
   return taskCard;
 }
 
