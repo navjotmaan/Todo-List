@@ -5,41 +5,61 @@
 }
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100vh;
 }
 
 #container {
     display: flex;
+    height: 100%;
 }
 
 #sidebar {
-    background-color: #dee2e6;
+    background-color: #8f9aa4;
     height: 100vh;
     width: 20%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    padding: 20px;
+}
+
+#todos {
+    background-color: #f2f0f1;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.project-card,
+.task-card {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    background-color: #eaaa50;
+    color: #393b3c;
+    box-shadow: 10px 5px 5px rgb(144, 140, 140);
+    margin: 30px 50px;
+    padding: 10px;
+    gap: 10px;
 }
 
 .add-task {
-    background-color: #dee2e6;
+    background-color: #8f9aa4;
     border: none;
     cursor: pointer;
     font-size: 18px;
+    font-weight: bold;
     width: 100%;
     height: 30px;
     text-align: left;
 }
 
-.add-task:focus {
-    background-color: rgb(167, 175, 224);
-}
-
-#todos {
-    background-color: #f8f9fa;
-    height: 100vh;
-    width: 80%;
+.add-task:hover {
+    color: #f2f0f1;
 }
 
 form {
@@ -82,26 +102,31 @@ label {
     cursor: pointer;
 }
 
-.project-card,
-.task-card {
-    display: flex;
-    flex-direction: column;
-    width: 50vw;
-    border: 2px solid rgb(128, 128, 242);
-    margin: 20px;
-    padding: 10px;
-}
-
-.task-card {
-    width: 20vw;
+.task-name {
+    margin: 15px;
 }
 
 .icon {
     width: 20px;
     height: 20px;
+    cursor: pointer;
+}
+
+.icons-box {
+    display: flex;
+    gap: 10px;
 }
 
 .box {
     display: flex;
     justify-content: space-between;
+}
+
+#checklist {
+    display: flex;
+    gap: 10px;
+}
+
+#show-task {
+    cursor: pointer;
 }
