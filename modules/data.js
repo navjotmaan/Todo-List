@@ -1,12 +1,15 @@
 export let tasks = [];
 export let projects = [];
 
+const date = new Date();
+const todayDate = date.toLocaleDateString();
+
 export class Task {
   constructor(title, description, dueDate, priority, projectId) {
     this.id = crypto.randomUUID();
-    this.title = title || "";
+    this.title = title || "new task";
     this.description = description || "";
-    this.dueDate = dueDate || "";
+    this.dueDate = dueDate || todayDate;
     this.priority = priority || "low";
     this.projectId = projectId || null;
   }
